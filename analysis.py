@@ -44,3 +44,47 @@ plt.tight_layout()
 plt.savefig("churn_distribution.png")
 plt.show()
 
+
+# Business insights: churn by contract and tenure
+
+# Churn rate by contract type
+contract_churn = (
+    df.groupby("Contract")["Churn"]
+    .apply(lambda x: (x == "Yes").mean() * 100)
+    .sort_values(ascending=False)
+)
+
+print("\nChurn rate by contract type (%):")
+print(contract_churn.round(2))
+
+contract_churn.plot(kind="bar", rot=0)
+plt.title("Customer Churn Rate by Contract Type")
+plt.xlabel("Contract Type")
+plt.ylabel("Churn Rate (%)")
+plt.tight_layout()
+plt.savefig("churn_by_contract.png")
+plt.close()
+
+# Churn rate by customer tenure
+df["TenureGroup"] = pd.cut(
+    df["tenure"],
+    bins=[-1, 12, 24, 48, 72],
+    labels=["0-12 months", "13-24 months",
+            "25-48 months", "49-72 months"]
+)
+
+tenure_churn = (
+    df.groupby("TenureGroup", observed=False)["Churn"]
+    .apply(lambda x: (x == "Yes").mean() * 100)
+)
+
+print("\nChurn rate by tenure group (%):")
+print(tenure_churn.round(2))
+
+tenure_churn.plot(kind="bar", rot=0)
+plt.title("Customer Churn Rate by Tenure")
+plt.xlabel("Customer Tenure")
+plt.ylabel("Churn Rate (%)")
+plt.tight_layout()
+plt.savefig("churn_by_tenure.png")
+plt.close()
