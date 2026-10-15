@@ -28,6 +28,12 @@ jobs:
         run: |
           python analysis.py
 
+
+      
+      - name: Train and evaluate churn model
+        run: |
+          python churn_model.py
+
       
       - name: Upload analysis charts
         if: always()
