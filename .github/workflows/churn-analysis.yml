@@ -47,6 +47,9 @@ jobs:
             churn_by_tenure.png
             churn_confusion_matrix.png
             model_results.txt
+            feature_importance.png
+            feature_importance.txt
+
           if-no-files-found: warn
 
 
