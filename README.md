@@ -62,3 +62,6 @@ The model's precision and recall indicate that some predictions are incorrect. F
 
 ### 5. Feature Importance
 ![Feature Importance](feature_importance.png)
+
+### Real App Link
+https://customer-churn-analysis-veccuqkornwfmtf7ydgwkc.streamlit.app/
