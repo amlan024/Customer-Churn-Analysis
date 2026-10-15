@@ -28,11 +28,16 @@ jobs:
         run: |
           python analysis.py
 
-      - name: Upload churn chart
+      
+      - name: Upload analysis charts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: churn-analysis-chart
-          path: churn_distribution.png
-          if-no-files-found: ignore
+          name: churn-analysis-charts
+          path: |
+            churn_distribution.png
+            churn_by_contract.png
+            churn_by_tenure.png
+          if-no-files-found: warn
+
 
