@@ -44,3 +44,21 @@ These recommendations are hypotheses for further investigation. Feature importan
 ### Limitations
 
 The model's precision and recall indicate that some predictions are incorrect. Further work could include threshold tuning, cross-validation, hyperparameter tuning, and comparison with baseline models before deployment.
+
+
+## Visual Results
+
+### 1. Customer Churn Distribution
+![Customer Churn Distribution](churn_distribution.png)
+
+### 2. Churn Rate by Contract Type
+![Churn by Contract Type](churn_by_contract.png)
+
+### 3. Churn Rate by Customer Tenure
+![Churn by Tenure](churn_by_tenure.png)
+
+### 4. Machine Learning Confusion Matrix
+![Churn Confusion Matrix](churn_confusion_matrix.png)
+
+### 5. Feature Importance
+![Feature Importance](feature_importance.png)
