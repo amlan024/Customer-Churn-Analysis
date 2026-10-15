@@ -134,3 +134,49 @@ plt.close()
 
 print("\nModel results and confusion matrix saved.")
 
+
+# 9. Feature importance analysis
+
+# Get the trained Random Forest and preprocessing components
+preprocessor_fitted = model.named_steps["preprocessing"]
+classifier = model.named_steps["classifier"]
+
+# Retrieve feature names after one-hot encoding
+feature_names = preprocessor_fitted.get_feature_names_out()
+
+# Rank features by Random Forest importance
+importance_df = pd.DataFrame({
+    "Feature": feature_names,
+    "Importance": classifier.feature_importances_
+}).sort_values("Importance", ascending=False)
+
+# Select the 10 most important features
+top_features = importance_df.head(10).sort_values(
+    "Importance", ascending=True
+)
+
+print("\nTOP 10 FEATURE IMPORTANCES")
+print(importance_df.head(10).to_string(index=False))
+
+# Save the feature importance report
+importance_df.head(10).to_csv(
+    "feature_importance.txt",
+    sep="\t",
+    index=False
+)
+
+# Create the feature importance chart
+plt.figure(figsize=(10, 6))
+plt.barh(
+    top_features["Feature"],
+    top_features["Importance"]
+)
+plt.title("Top 10 Features Influencing Churn Predictions")
+plt.xlabel("Random Forest Feature Importance")
+plt.ylabel("Feature")
+plt.tight_layout()
+plt.savefig("feature_importance.png", dpi=150)
+plt.close()
+
+print("\nFeature importance report and chart saved.")
+
