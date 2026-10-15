@@ -1,4 +1,4 @@
-
+import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -180,3 +180,7 @@ plt.close()
 
 print("\nFeature importance report and chart saved.")
 
+# 10. Save the trained pipeline for the web app
+joblib.dump(model, "churn_model.joblib")
+
+print("Trained model saved as churn_model.joblib")
